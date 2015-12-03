@@ -1,0 +1,34 @@
+<%= heading "Identifique-se para prosseguir" %>
+
+<div class="section">
+<div class="col s12">
+
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="row">
+      <div class="input-field col s12">
+        <%= f.email_field :email, autofocus: true, class: "radius" %>
+        <%= f.label :email, value: "Email" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <%= f.password_field :password, autocomplete: "off", class: "radius" %>
+        <%= f.label :password, value: "Senha" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <%= f.check_box :remember_me %>
+      <%= f.label :remember_me, value: "Lembrar" %>
+    </div>
+
+    <div class="section">
+      <%= f.button type: "submit", name: "action", class: "btn-large right" do %>
+        <i class="material-icons right">vpn_key</i>Login
+      <% end %>
+    </div>
+  <% end %>
+
+</div>
+</div>

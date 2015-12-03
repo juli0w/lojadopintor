@@ -1,0 +1,9 @@
+<%= heading "Carrinho de compras" %>
+
+<%= render "errors" %>
+
+<% if @order_items.size == 0 %>
+  <%= render "empty" %>
+<% else %>
+  <%= render "cart" %>
+<% end %>

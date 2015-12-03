@@ -1,0 +1,31 @@
+<% cache('navbar') do %>
+<nav class="theme darken-2">
+  <div class="nav-wrapper navbar">
+    <ul class="firstnav">
+      <% @categories_root.actives.each do |category_root| %>
+      <li>
+        <%= link_to category_root.name, '#' %>
+
+        <% if category_root.children.actives.any? %>
+          <div class="subnav theme darken-1">
+            <div class="row">
+
+            <% category_root.children.actives.each do |category| %>
+              <div class="sec col s4">
+                <h5 class="white-text"><%= category.name %></h5>
+                <div class="divider"></div>
+                <% category.children.actives.most_popular.each do |subcategory| %>
+                  <%= link_to subcategory.name, subcategory %>
+                <% end %>
+              </div>
+            <% end %>
+
+            </div>
+          </div>
+        <% end %>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+</nav>
+<% end %>

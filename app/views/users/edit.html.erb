@@ -1,0 +1,62 @@
+<%= heading "Informações de perfil" %>
+
+<div class="row">
+  <%= form_for @user do |f| %>
+
+    <blockquote>Dados pessoais</blockquote>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <%= f.text_field :name %>
+        <%= f.label :name %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s6">
+        <%= f.text_field :phone %>
+        <%= f.label :phone %>
+      </div>
+
+      <div class="input-field col s6">
+        <%= f.text_field :cellphone %>
+        <%= f.label :cellphone %>
+      </div>
+    </div>
+
+    <blockquote>Endereço</blockquote>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <%= f.text_field :address %>
+        <%= f.label :address %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s10">
+        <%= f.text_field :city %>
+        <%= f.label :city %>
+      </div>
+
+      <div class="input-field col s2">
+        <%= f.text_field :uf %>
+        <%= f.label :uf %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <%= f.text_field :cep %>
+        <%= f.label :cep %>
+      </div>
+    </div>
+
+    <div class="section">
+      <%= f.button type: "submit", name: "action", class: "btn-large right" do %>
+        <i class="material-icons right">send</i>Salvar
+      <% end %>
+    </div>
+
+  <% end %>
+</div>

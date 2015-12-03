@@ -1,0 +1,32 @@
+<div class="row">
+  <%= form_for [:admin, @category] do |f| %>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <%= f.text_field :name %>
+        <%= f.label :name, value: "Nome" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <%= f.collection_select :parent_id, @categories, :id, :name, include_blank: true %>
+        <%= f.label :parent_id, value: "Categoria" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <%= f.check_box :active, id: "active_category" %>
+        <%= f.label :active, value: "Ativo?", for: "active_category" %>
+      </div>
+    </div>
+
+    <div class="section">
+      <%= f.button type: "submit", name: "action", class: "btn-large right" do %>
+        <i class="material-icons right">send</i>Salvar
+      <% end %>
+    </div>
+
+  <% end %>
+</div>

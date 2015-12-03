@@ -1,0 +1,68 @@
+<%= heading "Pedido ##{@order.id} - #{@order.order_status.try(:name)}" %>
+
+<div class="row">
+  <blockquote>Dados de entrega - Por favor verifique os dados antes de efetuar o pagamento</blockquote>
+  <strong>Comprador</strong>: <%= @order.customer_name %><br />
+  <strong>Endereço</strong>: <%= @order.shipping_address %><br />
+  <strong>Cidade</strong>: <%= "#{@order.shipping_city}/#{@order.shipping_uf}" %><br />
+  <strong>CEP</strong>: <%= @order.shipping_cep %><br />
+  <strong>Telefone</strong>: <%= @order.customer_phone %><br />
+  <strong>Celular</strong>: <%= @order.customer_cellphone %>
+</div>
+
+<table class="striped responsive-table">
+  <thead>
+    <tr>
+        <th data-field="product" width="65%">Produto</th>
+        <th data-field="unit_price" width="10%">Valor</th>
+        <th data-field="quantity" width="15%">Quantidade</th>
+        <th data-field="value" width="10%">Total</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @order_items.each do |order_item| %>
+      <tr>
+        <td><%= order_item.product.name %></td>
+        <td><%= number_to_currency order_item.unit_price %></td>
+        <td><%= order_item.quantity %></td>
+        <td><%= number_to_currency order_item.total_price %></td>
+      </tr>
+    <% end %>
+
+    <tr>
+      <td colspan=2></td>
+      <td class="right-align">Subtotal:</td>
+      <td><%= number_to_currency @order.subtotal %></td>
+    </tr>
+
+    <% if @order.calculate_discount > 0 %>
+    <tr>
+      <td colspan=2></td>
+      <td class="right-align">Desconto:</td>
+      <td><%= number_to_currency @order.calculate_discount %></td>
+    </tr>
+    <% end %>
+
+    <% unless @order.shipping_cep.nil? %>
+    <tr>
+      <td colspan=2></td>
+      <td class="right-align">Frete <%= @order.shipping_method_humanize.to_s.upcase %>:</td>
+      <td><%= number_to_currency @order.shipping_price %></td>
+    </tr>
+    <% end %>
+
+    <tr>
+      <td colspan=2></td>
+      <td class="right-align">Total:</td>
+      <td><%= number_to_currency @order.total %></td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="section">
+  <% if @order.waiting_payment? %>
+    <%= link_to "Efetuar pagamento", "", class: "btn" %>
+    <!-- <%= link_to "Cancelar pedido", "", class: "btn" %> -->
+  <% end %>
+</div>

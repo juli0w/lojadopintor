@@ -1,0 +1,58 @@
+<%= heading "Contato" %>
+
+<div class="row">
+  <div class="input-field col s12 m8 offset-m2 l6 offset-l3">
+    <%= form_for @message do |f| %>
+
+      <blockquote>Preencha os campos para enviar a mensagem</blockquote>
+
+      <div class="row">
+        <% @message.errors.full_messages.each do |msg| %>
+          <div class="input-field col s12 red-text">
+            <%= msg %>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <%= f.text_field :name %>
+          <%= f.label :name %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <%= f.text_field :email %>
+          <%= f.label :email %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s6">
+          <%= f.text_field :phone %>
+          <%= f.label :phone %>
+        </div>
+
+        <div class="input-field col s6">
+          <%= f.text_field :cellphone %>
+          <%= f.label :cellphone %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <%= f.text_area :message, class: "materialize-textarea"%>
+          <%= f.label :message %>
+        </div>
+      </div>
+
+      <div class="section">
+        <%= f.button type: "submit", name: "action", class: "btn-large right" do %>
+          <i class="material-icons right">send</i>Enviar
+        <% end %>
+      </div>
+
+    <% end %>
+  </div>
+</div>

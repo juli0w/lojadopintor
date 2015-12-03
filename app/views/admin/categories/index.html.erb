@@ -1,0 +1,26 @@
+<%= heading "Categorias" %>
+
+<ul class="tree">
+  <% @categories_root.each do |category_root| %>
+    <li><%= category_root.name %> <%= link_to "editar", [:edit, :admin, category_root] %>
+      <ul>
+        <% category_root.children.each do |category| %>
+          <li><%= category.name %> - <%= link_to "editar", [:edit, :admin, category] %>
+            <ul>
+              <% category.children.each do |subcategory| %>
+                <li><%= subcategory.name %> - <%= link_to "editar", [:edit, :admin, subcategory] %></li>
+              <% end %>
+            </ul>
+          </li>
+        <% end %>
+      </ul>
+    </li>
+  <% end %>
+</ul>
+
+<div class="row">
+  <div class="col s12 admin-actions">
+    <%= link_to "Cadastrar", new_admin_category_path, class: "btn" %>
+    <%= link_to "Importação", importation_admin_categories_path, class: "btn" %>
+  </div>
+</div>

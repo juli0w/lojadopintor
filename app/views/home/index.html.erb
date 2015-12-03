@@ -1,0 +1,13 @@
+<% @line_products.each do |line| %>
+  <% if line.products.any? %>
+    <div class="row">
+      <%= heading line.name %>
+
+      <% line.products.each do |product| %>
+        <div class="col s12 m4 l3 product-line">
+          <%= render "products/product", product: product %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>

@@ -1,0 +1,63 @@
+<table class="striped responsive-table">
+  <thead>
+    <tr>
+        <th data-field="product" width="65%">Produto</th>
+        <th data-field="unit_price" width="10%">Valor</th>
+        <th data-field="quantity" width="15%">Quantidade</th>
+        <th data-field="value" width="10%">Total</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @order_items.each do |order_item| %>
+      <tr>
+        <td><%= order_item.product.name %></td>
+        <td><%= number_to_currency order_item.unit_price %></td>
+        <td>
+
+          <%= form_for order_item do |f| %>
+            <%= f.number_field :quantity, value: order_item.quantity.to_i, class: "form-control small-field", min: 1 %>
+            <br />
+            <%= f.hidden_field :product_id, value: order_item.product.id %>
+            <%= f.button class: "btn", type: "submit", name: "action" do %>
+              <i class="material-icons">loop</i>
+            <% end %>
+            <%= link_to order_item, { data: { confirm: "Remover '#{order_item.product.name}' do carrinho?" }, method: :delete, class: "btn" } do %>
+              <i class="material-icons">delete</i>
+            <% end %>
+          <% end %>
+
+        </td>
+        <td><%= number_to_currency order_item.total_price %></td>
+      </tr>
+    <% end %>
+
+    <tr>
+      <td colspan=2></td>
+      <td class="right-align">Subtotal:</td>
+      <td><%= number_to_currency @subtotal %></td>
+    </tr>
+
+    <% if @discount > 0 %>
+    <tr>
+      <td colspan=2></td>
+      <td class="right-align">Desconto:</td>
+      <td><%= number_to_currency @discount %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="section">
+  <div class="row">
+    <%= render "cep" %>
+
+    <%= render "coupon" %>
+  </div>
+</div>
+
+<div class="section">
+  <%= link_to confirm_orders_path, class: "btn-large right" do %>
+    <i class="material-icons right">send</i>Continuar compra
+  <% end %>
+</div>

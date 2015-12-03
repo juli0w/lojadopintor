@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title><%= content_for?(:title) ? yield(:title) : "Loja do Pintor - Tudo em Tintas" %></title>
+
+  <%= stylesheet_link_tag    "application" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+  <%= render "layouts/header" %>
+
+  <%= render "layouts/alerts" %>
+
+  <div class="row main-content">
+    <div class="col s12">
+      <%= yield %>
+    </div>
+  </div>
+
+  <%= render "layouts/footer" %>
+
+  </body>
+</html>

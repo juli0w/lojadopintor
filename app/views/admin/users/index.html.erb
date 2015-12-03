@@ -1,0 +1,29 @@
+<%= heading "Usuários" %>
+
+<table class="striped responsive-table">
+  <thead>
+    <tr>
+        <th></th>
+        <th>Usuário</th>
+        <th>Email</th>
+        <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td>#<%= user.id %></td>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td><%= link_to "Editar", [:edit, :admin, user] %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="row">
+  <div class="col s12 admin-actions">
+    <%= link_to "Cadastrar", new_admin_user_path, class: "btn" %>
+  </div>
+</div>

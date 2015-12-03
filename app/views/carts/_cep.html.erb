@@ -1,0 +1,24 @@
+<div class="input-field col s6">
+<%= form_tag calculate_shipping_price_path do %>
+  <%= text_field_tag :cep, current_order.shipping_cep %>
+  <%= label_tag :cep, "CEP" %>
+
+  <%= submit_tag "Calcular", class: "btn" %>
+
+  <p><%= link_to "Não sabe o CEP?", "http://www.buscacep.correios.com.br/sistemas/buscacep/", target: "_blank" %></p>
+<% end %>
+
+<% if current_order.shipping_cep %>
+  <br />
+  <% current_order.shipping_methods.each do |k, shipping_method| %>
+
+    <div class="row">
+      <strong><%= @shipping_methods[shipping_method].nome %></strong><br />
+      Valor: <%= number_to_currency @shipping_methods[shipping_method].valor %>
+      <br />Prazo de entrega: <%= @shipping_methods[shipping_method].prazo_entrega %> - <%= @shipping_methods[shipping_method].prazo_entrega + 2 %> dias uteis
+    </div>
+
+  <% end %>
+<% end %>
+
+</div>

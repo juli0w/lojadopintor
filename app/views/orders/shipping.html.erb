@@ -1,0 +1,33 @@
+<%= heading "Método de envio" %>
+
+<div class="row">
+
+  <% @order.shipping_methods.each do |k, shipping_method| %>
+
+    <blockquote><%= @shipping_methods[shipping_method].nome %></blockquote>
+
+    <div class="row">
+      Valor: <%= number_to_currency @shipping_methods[shipping_method].valor %>
+      <br />Prazo de entrega: <%= @shipping_methods[shipping_method].prazo_entrega %> - <%= @shipping_methods[shipping_method].prazo_entrega + 2 %> dias uteis após a confirmação do pagamento
+      <% if @shipping_methods[shipping_method].respond_to?(:observacao) %>
+        <br /><strong><%= @shipping_methods[shipping_method].observacao %></strong>
+      <% end %>
+      <p>
+        <%= form_tag finish_orders_path do %>
+          <%= hidden_field_tag :shipping_method, k %>
+          <%= submit_tag "Entregar via #{@shipping_methods[shipping_method].nome}", class: "btn-large" %>
+        <% end %>
+      </p>
+    </div>
+
+    <div class="divider"></div>
+
+  <% end %>
+
+  <div class="section">
+    <%= link_to confirm_orders_path, class: "btn" do %>
+      <i class="material-icons left">replay</i>Voltar
+    <% end %>
+  </div>
+
+</div>

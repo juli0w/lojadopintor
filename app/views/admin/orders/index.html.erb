@@ -1,0 +1,34 @@
+<%= heading "Pedidos" %>
+
+<div class="section">
+  <%= link_to "Todos", state: :all %> |
+  <%= link_to "Abertos", state: :opened %> |
+  <%= link_to "Confirmados", state: :confirmed %> |
+  <%= link_to "Pagos", state: :paid %> |
+  <%= link_to "Enviados", state: :sent %> |
+  <%= link_to "Cancelados", state: :canceled %>
+</div>
+
+<table class="striped responsive-table">
+  <thead>
+    <tr>
+        <th>Pedido</th>
+        <th>Data</th>
+        <th>Valor</th>
+        <th>Status</th>
+        <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @orders.each do |order| %>
+      <tr>
+        <td>#<%= order.id %></td>
+        <td><%= l(order.created_at, format: :custom) %></td>
+        <td><%= number_to_currency order.calculate_total %></td>
+        <td><%= order.order_status.try(:name) %></td>
+        <td><%= link_to "Detalhes", [:admin, order] %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

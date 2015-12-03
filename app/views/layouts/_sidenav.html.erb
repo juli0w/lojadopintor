@@ -1,0 +1,8 @@
+<ul class="collection with-header">
+  <% @category_roots.each do |root| %>
+    <li class="collection-header"><h5><%= root.name %></h5></li>
+    <% root.children.each do |child| %>
+      <li class="collection-item"><%= link_to child.name, child %></li>
+    <% end %>
+  <% end %>
+</ul>

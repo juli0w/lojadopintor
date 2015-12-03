@@ -1,0 +1,43 @@
+<%= heading "Importar categorias" %>
+
+<div class="row">
+  <%= form_tag import_admin_categories_path, multipart: true do %>
+
+  <div class="row">
+    <div class="input-field col s12">
+      Familias<br />
+      <%= file_field_tag :familias, class: "round full-width-input" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="input-field col s12">
+      Grupos<br />
+      <%= file_field_tag :grupos, class: "round full-width-input" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="input-field col s12">
+      Subgrupos<br />
+      <%= file_field_tag :subgrupos, class: "round full-width-input" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="input-field col s12">
+      Produtos<br />
+      <%= file_field_tag :itens, class: "round full-width-input" %>
+    </div>
+  </div>
+
+  <div class="section">
+    <%= button_tag type: "submit", name: "action", class: "btn" do %>
+      <i class="material-icons right">send</i>Importar
+    <% end %>
+
+    <%= link_to "Formatar", format_admin_categories_path, method: :delete, class: "btn", data: { confirm: "Isso irá excluir todas as categorias. Continuar?" } %>
+  </div>
+
+	<% end %>
+</div>

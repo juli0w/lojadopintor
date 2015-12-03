@@ -1,0 +1,28 @@
+.navbar .firstnav {
+  position: relative;
+}
+
+.navbar .subnav {
+  padding: 15px;
+  width: 100%;
+  position: absolute;
+  top: 60px;
+  left: -4000px;
+  z-index: 100;
+  margin-left: 0;
+}
+
+.navbar ul.firstnav > li:hover > .subnav { left: 0px; }
+
+.subnav a {
+  line-height: normal;
+  padding: 3px 0;
+}
+
+.subnav .sec {
+  overflow: hidden;
+}
+
+.subnav .divider {
+  margin-bottom: 15px;
+}

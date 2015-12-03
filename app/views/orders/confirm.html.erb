@@ -1,0 +1,71 @@
+<%= heading "Confirmação de dados" %>
+
+<div class="row">
+  <%= form_for @order, url: shipping_orders_path, method: :post  do |f| %>
+
+    <div class="row">
+      <% @order.errors.full_messages.each do |msg| %>
+        <div class="input-field col s12 red-text">
+          <%= msg %>
+        </div>
+      <% end %>
+    </div>
+
+    <blockquote>Dados do comprador</blockquote>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <%= f.text_field :customer_name %>
+        <%= f.label :customer_name %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s6">
+        <%= f.text_field :customer_phone %>
+        <%= f.label :customer_phone %>
+      </div>
+
+      <div class="input-field col s6">
+        <%= f.text_field :customer_cellphone %>
+        <%= f.label :customer_cellphone %>
+      </div>
+    </div>
+
+    <blockquote>Dados de entrega</blockquote>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <%= f.text_field :shipping_address %>
+        <%= f.label :shipping_address %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s10">
+        <%= f.text_field :shipping_city %>
+        <%= f.label :shipping_city %>
+      </div>
+
+      <div class="input-field col s2">
+        <%= f.text_field :shipping_uf %>
+        <%= f.label :shipping_uf %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <%= f.text_field :shipping_cep %>
+        <%= f.label :shipping_cep %>
+        <span><%= link_to "Não sabe o CEP?", "http://www.buscacep.correios.com.br/sistemas/buscacep/", target: "_blank" %></span>
+      </div>
+    </div>
+
+    <div class="section">
+      <%= f.button type: "submit", name: "action", class: "btn-large right" do %>
+        <i class="material-icons right">send</i>Confirmar
+      <% end %>
+    </div>
+
+  <% end %>
+</div>

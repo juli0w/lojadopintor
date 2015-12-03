@@ -1,0 +1,25 @@
+<%= heading "Pedidos" %>
+
+<table class="striped responsive-table">
+  <thead>
+    <tr>
+        <th>Pedido</th>
+        <th>Data</th>
+        <th>Valor</th>
+        <th>Status</th>
+        <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @orders.each do |order| %>
+      <tr>
+        <td>#<%= order.id %></td>
+        <td><%= l(order.created_at, format: :custom) %></td>
+        <td><%= number_to_currency order.total %></td>
+        <td><%= order.order_status.try(:name) %></td>
+        <td><%= link_to "Detalhes", order %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

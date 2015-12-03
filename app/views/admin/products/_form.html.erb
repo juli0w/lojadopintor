@@ -1,0 +1,106 @@
+<div class="row">
+  <%= form_for [:admin, @product], html: { multipart: true } do |f| %>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <%= f.text_field :name %>
+        <%= f.label :name, value: "Nome" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s6">
+        <%= f.text_field :price %>
+        <%= f.label :price, value: "Preço" %>
+      </div>
+
+      <div class="input-field col s6">
+        <%= f.text_field :tax %>
+        <%= f.label :tax, value: "Taxa (%)" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <%= f.collection_select :category_id, @categories, :id, :name, include_blank: true, class: "round default-width-input" %>
+        <%= f.label :category_id %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <%= f.text_field :tag_list %>
+        <%= f.label :tag_list, value: "Tags" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <%= f.label :description, value: "Descrição" %>
+        <%= f.text_area :description, class: "ckeditor" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <%= f.text_field :excerpt %>
+        <%= f.label :excerpt, value: "Resumo" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s3">
+        <%= f.text_field :height %>
+        <%= f.label :height, value: "Altura (cm)" %>
+      </div>
+
+      <div class="input-field col s3">
+        <%= f.text_field :width %>
+        <%= f.label :width, value: "Largura (cm)" %>
+      </div>
+
+      <div class="input-field col s3">
+        <%= f.text_field :depth %>
+        <%= f.label :depth, value: "Comprimento (cm)" %>
+      </div>
+
+      <div class="input-field col s3">
+        <%= f.text_field :weight %>
+        <%= f.label :weight, value: "Peso (kg)" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <%= image_tag(@product.image.thumb) if @product.image? %>
+        <%= f.file_field :image %>
+        <br />
+        <p>
+          <%= f.check_box :remove_image, id: "remove_image" %>
+          <%= f.label :remove_image, value: "Remover imagem", for: "remove_image" %>
+        </p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <%= f.collection_select :line_product_id, @line_products, :id, :name, include_blank: true, class: "round default-width-input" %>
+        <%= f.label :line_product_id %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <%= f.check_box :active, id: "active_product" %>
+        <%= f.label :active, value: "Em estoque?", for: "active_product" %>
+      </div>
+    </div>
+
+    <div class="section">
+      <%= f.button type: "submit", name: "action", class: "btn-large right" do %>
+        <i class="material-icons right">send</i>Salvar
+      <% end %>
+    </div>
+
+  <% end %>
+</div>

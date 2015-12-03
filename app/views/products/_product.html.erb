@@ -1,0 +1,25 @@
+<div class="item">
+
+  <div class="product-image">
+    <%= link_to (
+          image_tag product.image.try(:thumb), id: "image-#{product.id}"
+        ), product %>
+  </div>
+
+  <div class="product-details valign-wrapper">
+    <span class="title center-align valign"><strong><%= product.name %></strong></span>
+  </div>
+
+  <div class="product-actions">
+    <span class="price">
+      Por <%= number_to_currency product.price %>
+    </span>
+    <% if product.purchable? %>
+      <%= link_to product, class: "btn-flat btn-cart right" do %>
+        <i class="material-icons left">shopping_cart</i> Comprar
+      <% end %>
+    <% else %>
+      <span class="theme-text right">Indisponível</span>
+    <% end %>
+  </div>
+</div>

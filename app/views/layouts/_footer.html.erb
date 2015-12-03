@@ -1,0 +1,31 @@
+<footer class="page-footer grey darken-3">
+  <div class="container">
+    <div class="row">
+      <div class="col l6 s12">
+        <h5 class="white-text">Trilha Sonora</h5>
+        <p class="grey-text text-lighten-4">
+          <iframe width="200" height="100" src="//www.youtube.com/embed/HPpu4thU0ug" frameborder="0" allowfullscreen></iframe>
+        </p>
+      </div>
+      <div class="col l3 s12">
+        <h5 class="white-text">Navegação</h5>
+        <ul>
+          <li><%= link_to "Principal", root_path, class: "white-text" %></li>
+          <li><%= link_to "Carrinho", cart_path, class: "white-text" %></li>
+          <li><%= link_to "Fale conosco", contact_path, class: "white-text" %></li>
+        </ul>
+      </div>
+      <div class="col l3 s12">
+        <h5 class="white-text">Siga-nos</h5>
+        <ul>
+          <li><a class="white-text" href="https://www.facebook.com/lojadopintorjlle" target="_blank">Facebook</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-copyright grey darken-4">
+    <div class="container">
+      Copyright <%= link_to "Loja do Pintor", root_url, class: "white-text darken-1" %>. Tudo em Tintas.
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,46 @@
+<div class="row">
+  <%= form_for [:admin, @coupon], html: { multipart: true } do |f| %>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <%= f.text_field :name %>
+        <%= f.label :name %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <%= f.text_field :owner_id %>
+        <%= f.label :owner_id %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <%= f.text_field :value %>
+        <%= f.label :value %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <%= f.select :discount_type, Coupon::TYPES, include_blank: false %>
+        <%= f.label :discount_type %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <%= f.check_box :active, id: "active_coupon" %>
+        <%= f.label :active, value: "Ativo?", for: "active_coupon" %>
+      </div>
+    </div>
+
+    <div class="section">
+      <%= f.button type: "submit", name: "action", class: "btn-large right" do %>
+        <i class="material-icons right">send</i>Salvar
+      <% end %>
+    </div>
+
+  <% end %>
+</div>

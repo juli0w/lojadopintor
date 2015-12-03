@@ -1,0 +1,51 @@
+<div class="col s12 m12 l12">
+  <h4 class="theme-text lighten-2"><%= @product.name %></h4>
+  <p><div class="divider"></div></p>
+</div>
+
+<div class="col s12 m4 l4">
+  <%= image_tag @product.image.try(:big), class: 'materialboxed responsive-img' %>
+</div>
+
+<div class="col s12 m8 l8">
+  <div class="row">
+    <div class="section">
+      <h4 class="theme-text">R$ <%= @product.price %></h4>
+      <% if @product.purchable? %>
+        <%= form_for @order_item do |f| %>
+          <div class="row">
+            <div class="input-field col s1">
+              <%= f.number_field :quantity, value: 1, class: "form-control", min: 1, max: 19 %>
+            </div>
+            <%= f.hidden_field :product_id, value: @product.id %>
+            <%= f.button class: "btn-large waves-effect waves-light", type: "submit", name: "action" do %>
+              <i class="material-icons left">shopping_cart</i>
+              Adicionar ao carrinho
+            <% end %>
+          </div>
+        <% end %>
+      <% else %>
+        Indisponível
+      <% end %>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="col s12">
+      <ul class="tabs">
+        <li class="tab col s3"><a class="active" href="#tab1">Descrição</a></li>
+        <li class="tab col s3"><a href="#tab2">Tabela nutricional</a></li>
+      </ul>
+    </div>
+    <div id="tab1" class="col s12">
+      <div class="section">
+        <p class="flow-text"><%= @product.description %></p>
+      </div>
+    </div>
+    <div id="tab2" class="col s12">
+      <div class="section">
+
+      </div>
+    </div>
+  </div>
+</div>

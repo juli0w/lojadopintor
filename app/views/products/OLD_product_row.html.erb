@@ -1,0 +1,11 @@
+<div class="card">
+  <div class="card-image waves-effect waves-block waves-light">
+    <%= image_tag product.image.try(:thumb), class: "center-align" %>
+    <span class="card-title black-text"><%= product.name %></span>
+  </div>
+  <div class="card-action">
+    <%= link_to 'Comprar', product, class: 'red-text' %>
+
+    <span class="right red-text">R$ <%= product.price %></span>
+  </div>
+</div>

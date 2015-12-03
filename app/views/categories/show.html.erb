@@ -1,0 +1,9 @@
+<%= heading @category.name %>
+
+<% @products.each do |product| %>
+  <div class="col s12 m6 l3 product-line">
+    <%= render "products/product", product: product %>
+  </div>
+<% end %>
+
+<%= paginate @products %>
