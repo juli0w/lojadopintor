@@ -18,7 +18,7 @@ class Product < ActiveRecord::Base
   end
 
   def purchable?
-    has_shipping_infos? and active? and category.active?
+    has_shipping_infos? and active? and category.try(:active?)
   end
 
   def has_shipping_infos?

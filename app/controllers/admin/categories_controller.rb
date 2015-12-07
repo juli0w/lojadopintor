@@ -54,6 +54,7 @@ module Admin
 
     def format
       Category.delete_all
+      Product.delete_all
 
       redirect_to importation_admin_categories_path, notice: "Categorias deletadas"
     end
