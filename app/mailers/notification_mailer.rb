@@ -1,5 +1,5 @@
 class NotificationMailer < ApplicationMailer
-  default from: "notification@ecommerce.com"
+  default from: ENV["GMAIL_USERNAME"]
 
   ADMIN_EMAILS = ["juli0w@hotmail.com"]
 

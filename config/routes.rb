@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'profile' => 'users#edit'
   get 'search' => 'products#search'
   get 'contact' => 'messages#new'
+  get 'stores' => 'home#stores'
 
   resources :messages, only: [:new, :create]
 
