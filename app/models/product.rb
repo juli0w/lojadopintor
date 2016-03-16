@@ -24,7 +24,7 @@ class Product < ActiveRecord::Base
   end
 
   def has_shipping_infos?
-    (self.weight > 0) and (self.width > 0) and (self.depth > 0) and (self.height > 0)
+    (self.weight.to_f > 0) and (self.width.to_f > 0) and (self.depth.to_f > 0) and (self.height.to_f > 0)
   end
 
   def cost
