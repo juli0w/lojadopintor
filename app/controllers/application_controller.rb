@@ -37,7 +37,7 @@ class ApplicationController < ActionController::Base
   end
 
   def load_products
-    @products = Product.order("active DESC").page(params[:page]).per(16)
+    @products = Product.purchables.order("active DESC").page(params[:page]).per(16)
   end
 
   def reset_session

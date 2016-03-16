@@ -7,6 +7,8 @@ class Product < ActiveRecord::Base
   belongs_to :category
   belongs_to :line_product
 
+  scope :purchables, -> { where("weight > 0 and width > 0 and depth > 0 and height > 0 and active = ?", true) }
+
   friendly_id :slug_name, use: :slugged
 
   def slug_name
@@ -22,7 +24,7 @@ class Product < ActiveRecord::Base
   end
 
   def has_shipping_infos?
-    self.weight.present? and self.width.present? and self.depth.present? and self.height.present?
+    (self.weight > 0) and (self.width > 0) and (self.depth > 0) and (self.height > 0)
   end
 
   def cost

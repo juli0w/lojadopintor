@@ -23,7 +23,11 @@ class Category < ActiveRecord::Base
   end
 
   def self.most_popular
-    self.actives.sort_by {|e| e.products.size}.reverse.first(15)
+    self.actives.sort_by { |e| e.products.purchables.size }.reverse.first(15)
+  end
+
+  def purchable_products?
+    products.purchables.size > 0
   end
 
   def self.roots

@@ -32,6 +32,10 @@ class EfatorImportation
       item.name   = i.xpath("descricao").text
       item.category_id = Category.where(alternative_id: subgrupo, level: 2).first.try(:id)
       item.price  = i.xpath("precovenda").text
+      item.weight = i.xpath("peso").text
+      item.height = i.xpath("altura").text
+      item.width  = i.xpath("largura").text
+      item.depth  = i.xpath("comprimento").text
       item.active = i.xpath("ativo").text
 
       item.save
@@ -46,7 +50,8 @@ class EfatorImportation
 		file.xpath("familias/familia").each do |item|
 			Category.create(alternative_id: item['id'],
         							name: item.xpath("descricao").text,
-                      level: 0)
+                      level: 0,
+											active: true)
 		end
 	end
 
@@ -54,7 +59,8 @@ class EfatorImportation
 		file.xpath("grupos/grupo").each do |item|
 			Category.create(alternative_id: item['id'],
         							name: item.xpath("descricao").text,
-                      level: 1,
+											level: 1,
+											active: true,
                       # if there is a family association set it up
         							parent_id: Category.where(level: 0, alternative_id: item.xpath("familia").text).first.try(:id))
 		end
@@ -64,7 +70,8 @@ class EfatorImportation
 		file.xpath("subgrupos/subgrupo").each do |item|
 			Category.create(alternative_id: item['id'],
 							        name: item.xpath("descricao").text,
-                      level: 2)
+                      level: 2,
+											active: true)
                       # default as OUTROS associated
                       # parent_id: Category.where(level: 1, name: "OUTROS").first.id
 		end

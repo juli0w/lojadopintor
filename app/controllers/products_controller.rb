@@ -9,6 +9,6 @@ class ProductsController < ApplicationController
   end
 
   def search
-    @products = Product.where("name like ?", "%#{params[:q]}%").page(params[:page])
+    @products = Product.purchables.where("name like ?", "%#{params[:q]}%").page(params[:page])
   end
 end
