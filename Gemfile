@@ -12,11 +12,11 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.1.0'
-
+gem 'mime-types', '~> 2.6.2'
 gem 'materialize-sass'
 gem 'devise'
 gem 'acts-as-taggable-on', '~> 3.4'
-gem 'carrierwave'
+gem 'carrierwave', '~> 0.10.0'
 gem 'mini_magick'
 gem 'correios-frete'
 gem 'kaminari'
